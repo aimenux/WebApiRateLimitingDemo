@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{8D0AB409
 		global.json = global.json
 		.gitignore = .gitignore
 		README.md = README.md
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example01", "src\Example01\Example01.csproj", "{9421563F-9E08-4B06-8A9C-E728AA2F6F2C}"
