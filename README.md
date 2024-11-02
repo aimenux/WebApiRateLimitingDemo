@@ -14,4 +14,4 @@ Using rate limiting middleware in web api projects
 >
 >
 
-**`Tools`** : net 8.0, mediatr, serilog, fluent-validation, fluent-assertions, nsubstitute, xunit
+**`Tools`** : net 8.0, mediatr, fluent-validation, serilog, xunit
