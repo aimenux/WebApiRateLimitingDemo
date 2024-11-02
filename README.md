@@ -1,3 +1,5 @@
+[![.NET](https://github.com/aimenux/WebApiRateLimitingDemo/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aimenux/WebApiRateLimitingDemo/actions/workflows/ci.yml)
+
 # WebApiRateLimitingDemo
 ```
 Using rate limiting middleware in web api projects
@@ -12,4 +14,4 @@ Using rate limiting middleware in web api projects
 >
 >
 
-**`Tools`** : net 8.0, mediatr, serilog
+**`Tools`** : net 8.0, mediatr, serilog, fluent-validation, fluent-assertions, nsubstitute, xunit
