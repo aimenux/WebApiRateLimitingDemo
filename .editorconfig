@@ -1,0 +1,22 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+
+# C# files
+[*.cs]
+
+# Indentation and spacing
+indent_size = 4
+tab_width = 4
+
+# New line preferences
+end_of_line = crlf
+insert_final_newline = false
+
+# Disable new line
+csharp_new_line_before_members_in_object_initializers = false
+
+# Remove useless namespaces
+dotnet_diagnostic.IDE0005.severity = error

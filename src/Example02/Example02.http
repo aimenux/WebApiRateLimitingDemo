@@ -1,0 +1,6 @@
+@HostAddress = http://localhost:5246
+
+GET {{HostAddress}}/api/weather?city=paris
+Accept: application/json
+
+###

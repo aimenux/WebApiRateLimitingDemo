@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <Deterministic>true</Deterministic>
+        <RunCodeAnalysis>true</RunCodeAnalysis>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+        <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);CS1591;</NoWarn>
+    </PropertyGroup>
+</Project>
