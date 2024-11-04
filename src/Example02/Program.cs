@@ -9,8 +9,6 @@ builder
     .AddApplication()
     .AddInfrastructure();
 
-builder.Services.AddAuthorization();
-
 var app = builder.Build();
 
 app.UseSwaggerDoc();

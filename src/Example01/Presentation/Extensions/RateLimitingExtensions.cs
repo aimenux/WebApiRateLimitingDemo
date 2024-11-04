@@ -58,6 +58,7 @@ public static class RateLimitingExtensions
                 configureOptions.PermitLimit = 3;
                 configureOptions.Window = TimeSpan.FromSeconds(10);
                 configureOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                configureOptions.AutoReplenishment = true;
                 configureOptions.QueueLimit = 1;
             });
     }
@@ -71,6 +72,7 @@ public static class RateLimitingExtensions
                 configureOptions.Window = TimeSpan.FromSeconds(10);
                 configureOptions.SegmentsPerWindow = 10;
                 configureOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                configureOptions.AutoReplenishment = true;
                 configureOptions.QueueLimit = 1;
             });
     }
@@ -95,6 +97,7 @@ public static class RateLimitingExtensions
                 configureOptions.ReplenishmentPeriod = TimeSpan.FromSeconds(10);
                 configureOptions.TokensPerPeriod = 10;
                 configureOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                configureOptions.AutoReplenishment = true;
                 configureOptions.QueueLimit = 1;
             });
     }
@@ -111,6 +114,7 @@ public static class RateLimitingExtensions
                         ReplenishmentPeriod = TimeSpan.FromSeconds(10),
                         TokensPerPeriod = 10,
                         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                        AutoReplenishment = true,
                         QueueLimit = 1
                     });
             });
@@ -124,14 +128,18 @@ public static class RateLimitingExtensions
                     new FixedWindowRateLimiterOptions
                     {
                         PermitLimit = 5,
-                        Window = TimeSpan.FromSeconds(10)
+                        Window = TimeSpan.FromSeconds(10),
+                        AutoReplenishment = true,
+                        QueueLimit = 1
                     })),
             PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
                 RateLimitPartition.GetFixedWindowLimiter(httpContext.Request.Method, _ =>
                     new FixedWindowRateLimiterOptions
                     {
                         PermitLimit = 10,
-                        Window = TimeSpan.FromMinutes(1)
+                        Window = TimeSpan.FromMinutes(1),
+                        AutoReplenishment = true,
+                        QueueLimit = 1
                     })));
     }
 
