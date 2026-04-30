@@ -13,9 +13,9 @@ var app = builder.Build();
 
 app.UseSwaggerDoc();
 
-app.UseRateLimiter();
-
 app.UseHttpsRedirection();
+
+app.UseRateLimiter();
 
 app.UseAuthorization();
 
