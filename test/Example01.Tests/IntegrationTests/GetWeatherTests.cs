@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Example01.Tests.IntegrationTests.Helpers;
-using FluentAssertions;
+using AwesomeAssertions;
 
 namespace Example01.Tests.IntegrationTests;
 

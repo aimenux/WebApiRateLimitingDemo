@@ -3,7 +3,7 @@ using Example02.Application.Features.GetWeather;
 using Example02.Domain.Entities;
 using Example02.Domain.Enums;
 using Example02.Domain.ValueObjects;
-using FluentAssertions;
+using AwesomeAssertions;
 using NSubstitute;
 
 namespace Example02.Tests.UnitTests;
