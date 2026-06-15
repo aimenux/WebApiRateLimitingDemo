@@ -1,6 +1,6 @@
 ﻿namespace Example02.Presentation.Extensions;
 
-public static class SwaggerExtensions
+internal static class SwaggerExtensions
 {
     public static void AddSwaggerDoc(this WebApplicationBuilder builder)
     {

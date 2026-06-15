@@ -10,6 +10,8 @@ public class IntegrationWebApplicationFactory : WebApplicationFactory<BaseContro
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        ArgumentNullException.ThrowIfNull(builder);
+        
         builder.ConfigureLogging(loggingBuilder =>
         {
             loggingBuilder.ClearProviders();

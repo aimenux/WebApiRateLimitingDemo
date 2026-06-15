@@ -2,7 +2,7 @@
 
 namespace Example01.Presentation;
 
-public static class DependencyInjection
+internal static class DependencyInjection
 {
     public static IServiceCollection AddPresentation(this WebApplicationBuilder builder)
     {

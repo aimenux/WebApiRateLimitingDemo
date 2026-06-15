@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Example01.Application;
 
-public static class DependencyInjection
+internal static class DependencyInjection
 {
     private static readonly Assembly CurrentAssembly = Assembly.GetExecutingAssembly();
     

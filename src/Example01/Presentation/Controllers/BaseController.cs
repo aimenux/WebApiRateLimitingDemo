@@ -10,7 +10,7 @@ namespace Example01.Presentation.Controllers;
 [Consumes(MediaTypeNames.Application.Json)]
 public abstract class BaseController : ControllerBase
 {
-    protected readonly ISender Sender;
+    protected ISender Sender { get; }
 
     protected BaseController(ISender sender)
     {

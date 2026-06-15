@@ -5,7 +5,7 @@ using Example01.Domain.ValueObjects;
 
 namespace Example01.Infrastructure.Proxies;
 
-public sealed class WeatherProxy : IWeatherProxy
+internal sealed class WeatherProxy : IWeatherProxy
 {
     public Task<Weather> GetWeatherAsync(string city, CancellationToken cancellationToken)
     {

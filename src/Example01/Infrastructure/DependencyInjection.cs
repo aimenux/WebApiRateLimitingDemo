@@ -3,7 +3,7 @@ using Example01.Infrastructure.Proxies;
 
 namespace Example01.Infrastructure;
 
-public static class DependencyInjection
+internal static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {

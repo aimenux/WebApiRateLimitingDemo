@@ -1,6 +1,6 @@
 ﻿namespace Example01.Presentation.Extensions;
 
-public static class ControllersExtensions
+internal static class ControllersExtensions
 {
     public static void MapControllers(this WebApplication app, bool requireRateLimiting)
     {

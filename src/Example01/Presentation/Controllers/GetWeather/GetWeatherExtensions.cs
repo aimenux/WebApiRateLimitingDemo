@@ -2,7 +2,7 @@
 
 namespace Example01.Presentation.Controllers.GetWeather;
 
-public static class GetWeatherExtensions
+internal static class GetWeatherExtensions
 {
     public static GetWeatherQuery ToQuery(this GetWeatherRequest request)
     {

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Example01.Application.Features.GetWeather;
 
-public sealed class GetWeatherQueryHandler : IRequestHandler<GetWeatherQuery, GetWeatherQueryResponse>
+internal sealed class GetWeatherQueryHandler : IRequestHandler<GetWeatherQuery, GetWeatherQueryResponse>
 {
     private readonly IWeatherProxy _weatherProxy;
 

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.RateLimiting;
 
 namespace Example02.Presentation.Extensions;
 
-public static class RateLimitingExtensions
+internal static class RateLimitingExtensions
 {
     private const int RejectionStatusCode = StatusCodes.Status429TooManyRequests;
     
@@ -38,7 +38,7 @@ public static class RateLimitingExtensions
                     options.AddChainedLimiter();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(policyType));
+                    throw new ArgumentOutOfRangeException(nameof(policyType), policyType, "Unsupported rate limiting policy type.");
             }
         });
     }
@@ -170,7 +170,7 @@ public static class RateLimitingExtensions
     }
 }
 
-public enum RateLimitingPolicyType
+internal enum RateLimitingPolicyType
 {
     Fixed = 1,
     Sliding,

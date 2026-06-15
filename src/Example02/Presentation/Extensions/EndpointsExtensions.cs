@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Example02.Presentation.Extensions;
 
-public static class EndpointsExtensions
+internal static class EndpointsExtensions
 {
     private static readonly Type EndpointType = typeof(IEndpoint);
     

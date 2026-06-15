@@ -4,7 +4,7 @@ using ValidationException = FluentValidation.ValidationException;
 
 namespace Example02.Application.Behaviours;
 
-public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+internal sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -20,7 +20,7 @@ public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior
             await ValidateAsync(request, cancellationToken);
         }
         
-        return await next();
+        return await next(cancellationToken);
     }
 
     private async Task ValidateAsync(TRequest request, CancellationToken cancellationToken)

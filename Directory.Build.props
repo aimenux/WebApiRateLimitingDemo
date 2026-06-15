@@ -1,16 +1,25 @@
 <Project>
+
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <Deterministic>true</Deterministic>
+        <AnalysisMode>All</AnalysisMode>
         <RunCodeAnalysis>true</RunCodeAnalysis>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
         <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+        <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <NoWarn>$(NoWarn);CS1591;</NoWarn>
+        <NoWarn>$(NoWarn);CA1062;CA1515;CS1591;CA1707;CA2007;CA2208;</NoWarn>
     </PropertyGroup>
+
+    <ItemGroup Condition="'$(IsTestProject)' == 'false'">
+        <InternalsVisibleTo Include="Example01.Tests" />
+        <InternalsVisibleTo Include="Example02.Tests" />
+    </ItemGroup>
+    
 </Project>

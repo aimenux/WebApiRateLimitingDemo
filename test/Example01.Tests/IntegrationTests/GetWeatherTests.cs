@@ -23,7 +23,7 @@ public class GetWeatherTests
         var client = _factory.CreateClient();
 
         // act
-        var response = await client.GetAsync(route);
+        var response = await client.GetAsync(new Uri(route, UriKind.Relative));
         var responseBody = await response.Content.ReadAsStringAsync();
 
         // assert
