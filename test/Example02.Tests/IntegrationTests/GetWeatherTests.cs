@@ -30,4 +30,20 @@ public class GetWeatherTests
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         responseBody.Should().NotBeNullOrWhiteSpace();
     }
+    
+    [Fact]
+    public async Task Should_Get_Weather_Returns_TooManyRequests()
+    {
+        // arrange
+        var client = _factory.CreateClient();
+
+        // act
+        var tasks = Enumerable.Range(0, 10)
+            .Select(_ => client.GetAsync(new Uri("api/weather?city=paris", UriKind.Relative)))
+            .ToArray();
+        var responses = await Task.WhenAll(tasks);
+        
+        // assert
+        responses.Any(r => r.StatusCode == HttpStatusCode.TooManyRequests).Should().BeTrue();
+    }
 }

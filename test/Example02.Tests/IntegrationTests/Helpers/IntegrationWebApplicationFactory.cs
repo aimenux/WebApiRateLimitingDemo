@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Example02.Tests.IntegrationTests.Helpers;
@@ -18,8 +19,13 @@ public class IntegrationWebApplicationFactory : WebApplicationFactory<BaseEndpoi
             loggingBuilder.AddDebug().AddConsole();
         });
         
-        builder.ConfigureAppConfiguration((_, _) =>
+        builder.ConfigureAppConfiguration((_, config) =>
         {
+            var settings = new Dictionary<string, string?>
+            {
+                { "RateLimiting:PolicyName", "Fixed" }
+            };
+            config.AddInMemoryCollection(settings);
         });
 
         builder.ConfigureTestServices(services =>
