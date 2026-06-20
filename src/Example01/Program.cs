@@ -15,9 +15,9 @@ app.UseSwaggerDoc();
 
 app.UseHttpsRedirection();
 
-app.UseRateLimiter();
-
 app.UseAuthorization();
+
+app.UseRateLimiter();
 
 app.MapControllers(requireRateLimiting: true);
 

@@ -15,8 +15,8 @@ public class GetWeatherTests
     }
     
     [Theory]
-    [InlineData("api/weather?city=paris")]
-    [InlineData("api/weather?city=tokyo")]
+    [InlineData("api/weathers?city=paris")]
+    [InlineData("api/weathers?city=tokyo")]
     public async Task Should_Get_Weather_Returns_Ok(string route)
     {
         // arrange
@@ -39,7 +39,7 @@ public class GetWeatherTests
 
         // act
         var tasks = Enumerable.Range(0, 10)
-            .Select(_ => client.GetAsync(new Uri("api/weather?city=paris", UriKind.Relative)))
+            .Select(_ => client.GetAsync(new Uri("api/weathers?city=paris", UriKind.Relative)))
             .ToArray();
         var responses = await Task.WhenAll(tasks);
         

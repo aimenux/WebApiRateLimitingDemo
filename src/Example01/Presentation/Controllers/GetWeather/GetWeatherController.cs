@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Example01.Presentation.Controllers.GetWeather;
 
+[Route("api/weathers")]
 public sealed class GetWeatherController : BaseController
 {
     public GetWeatherController(ISender sender) : base(sender)
