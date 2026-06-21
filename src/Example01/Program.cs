@@ -19,6 +19,8 @@ app.UseAuthorization();
 
 app.UseRateLimiter();
 
-app.MapControllers(requireRateLimiting: true);
+app
+    .MapControllers()
+    .RequireRateLimiting(builder.Configuration.GetRateLimitingPolicyType().ToString());
 
 await app.RunAsync();

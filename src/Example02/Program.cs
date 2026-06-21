@@ -19,6 +19,6 @@ app.UseAuthorization();
 
 app.UseRateLimiter();
 
-app.MapEndpoints(requireRateLimiting: true);
+app.MapEndpoints();
 
 await app.RunAsync();

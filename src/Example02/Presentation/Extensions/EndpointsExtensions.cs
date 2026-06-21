@@ -20,17 +20,14 @@ internal static class EndpointsExtensions
         return services;
     }
     
-    public static IApplicationBuilder MapEndpoints(this WebApplication app, bool requireRateLimiting)
+    public static IApplicationBuilder MapEndpoints(this WebApplication app)
     {
-        var configuration = app.Services.GetRequiredService<IConfiguration>();
         var endpoints = app.Services.GetServices<IEndpoint>();
+        var policyName = app.Configuration.GetRateLimitingPolicyType().ToString();
         foreach (var endpoint in endpoints)
         {
             var builder = endpoint.MapEndpoint(app);
-            if (requireRateLimiting)
-            {
-                builder.RequireRateLimiting(configuration);
-            }
+            builder.RequireRateLimiting(policyName);
         }
         return app;
     }

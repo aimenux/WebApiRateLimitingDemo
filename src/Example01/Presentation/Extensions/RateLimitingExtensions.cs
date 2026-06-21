@@ -9,7 +9,7 @@ internal static class RateLimitingExtensions
     
     public static void AddRateLimiting(this WebApplicationBuilder builder)
     {
-        var policyType = GetRateLimitingPolicyType(builder.Configuration);
+        var policyType = builder.Configuration.GetRateLimitingPolicyType();
 
         builder.Services.AddRateLimiter(options =>
         {
@@ -42,12 +42,17 @@ internal static class RateLimitingExtensions
             }
         });
     }
-
-    public static TBuilder RequireRateLimiting<TBuilder>(this TBuilder builder, IConfiguration configuration) where TBuilder : IEndpointConventionBuilder
+    
+    public static RateLimitingPolicyType GetRateLimitingPolicyType(this IConfiguration configuration)
     {
-        var policyType = GetRateLimitingPolicyType(configuration);
-        builder.RequireRateLimiting(policyType.ToString());
-        return builder;
+        var policyName = configuration.GetValue<string>("RateLimiting:PolicyName");
+        
+        if (!Enum.TryParse(policyName, ignoreCase: true, out RateLimitingPolicyType policyType))
+        {
+            throw new InvalidOperationException($"Invalid rate limiting policy '{policyName}'.");
+        }
+
+        return policyType;
     }
 
     private static void AddFixedWindowLimiter(this RateLimiterOptions options)
@@ -70,7 +75,7 @@ internal static class RateLimitingExtensions
             {
                 configureOptions.PermitLimit = 3;
                 configureOptions.Window = TimeSpan.FromSeconds(10);
-                configureOptions.SegmentsPerWindow = 10;
+                configureOptions.SegmentsPerWindow = 5;
                 configureOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                 configureOptions.AutoReplenishment = true;
                 configureOptions.QueueLimit = 1;
@@ -95,7 +100,7 @@ internal static class RateLimitingExtensions
             {
                 configureOptions.TokenLimit = 3;
                 configureOptions.ReplenishmentPeriod = TimeSpan.FromSeconds(10);
-                configureOptions.TokensPerPeriod = 10;
+                configureOptions.TokensPerPeriod = 5;
                 configureOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                 configureOptions.AutoReplenishment = true;
                 configureOptions.QueueLimit = 1;
@@ -112,7 +117,7 @@ internal static class RateLimitingExtensions
                     {
                         TokenLimit = 3,
                         ReplenishmentPeriod = TimeSpan.FromSeconds(10),
-                        TokensPerPeriod = 10,
+                        TokensPerPeriod = 5,
                         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                         AutoReplenishment = true,
                         QueueLimit = 1
@@ -141,18 +146,6 @@ internal static class RateLimitingExtensions
                         AutoReplenishment = true,
                         QueueLimit = 1
                     })));
-    }
-
-    private static RateLimitingPolicyType GetRateLimitingPolicyType(this IConfiguration configuration)
-    {
-        var policyName = configuration.GetValue<string>("RateLimiting:PolicyName") ?? nameof(RateLimitingPolicyType.Fixed);
-        
-        if (!Enum.TryParse(policyName, ignoreCase: true, out RateLimitingPolicyType policyType))
-        {
-            throw new InvalidOperationException($"Invalid rate limiting policy '{policyName}'.");
-        }
-
-        return policyType;
     }
     
     private static async Task HandleRateLimitingRejectionAsync(OnRejectedContext context, CancellationToken cancellationToken)
