@@ -19,8 +19,7 @@ public class GetWeatherQueryHandlerTests
         var weather = new Weather
         {
             City = city,
-            Temperature = new Temperature(20, TemperatureType.Celsius),
-            Description = Guid.NewGuid().ToString()
+            Temperature = new Temperature(20, TemperatureType.Celsius)
         };
         
         var proxy = Substitute.For<IWeatherProxy>();
@@ -35,7 +34,7 @@ public class GetWeatherQueryHandlerTests
 
         // assert
         queryResponse.Should().NotBeNull();
-        queryResponse.Weather.Should().NotBeNull();
-        queryResponse.Weather.Should().BeEquivalentTo(weather);
+        queryResponse.City.Should().Be(city);
+        queryResponse.Temperature.Should().Be(weather.Temperature.Value);
     }
 }

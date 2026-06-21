@@ -1,5 +1,3 @@
-﻿using Example01.Domain.Entities;
+﻿namespace Example01.Application.Features.GetWeather;
 
-namespace Example01.Application.Features.GetWeather;
-
-public sealed record GetWeatherQueryResponse(Weather Weather);
+public sealed record GetWeatherQueryResponse(string City, double Temperature);

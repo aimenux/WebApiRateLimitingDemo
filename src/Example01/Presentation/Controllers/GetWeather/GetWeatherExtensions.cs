@@ -11,6 +11,6 @@ internal static class GetWeatherExtensions
     
     public static GetWeatherResponse ToResponse(this GetWeatherQueryResponse response)
     {
-        return new GetWeatherResponse(response.Weather.City, response.Weather.Temperature.Value, response.Weather.Description);
+        return new GetWeatherResponse(response.City, response.Temperature);
     }
 }

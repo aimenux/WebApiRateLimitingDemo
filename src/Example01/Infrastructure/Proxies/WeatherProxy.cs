@@ -7,15 +7,16 @@ namespace Example01.Infrastructure.Proxies;
 
 internal sealed class WeatherProxy : IWeatherProxy
 {
-    public Task<Weather> GetWeatherAsync(string city, CancellationToken cancellationToken)
+    public async Task<Weather> GetWeatherAsync(City city, CancellationToken cancellationToken)
     {
+        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+        
         var weather = new Weather
         {
             City = city,
-            Temperature = new Temperature(25, TemperatureType.Celsius),
-            Description = "Sunny"
+            Temperature = new Temperature(25, TemperatureType.Celsius)
         };
 
-        return Task.FromResult(weather);
+        return weather;
     }
 }

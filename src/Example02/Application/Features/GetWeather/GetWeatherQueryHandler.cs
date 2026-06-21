@@ -15,6 +15,6 @@ public sealed class GetWeatherQueryHandler : IRequestHandler<GetWeatherQuery, Ge
     public async Task<GetWeatherQueryResponse> Handle(GetWeatherQuery request, CancellationToken cancellationToken)
     {
         var weather = await _weatherProxy.GetWeatherAsync(request.City, cancellationToken);
-        return new GetWeatherQueryResponse(weather);
+        return new GetWeatherQueryResponse(weather.City.Name, weather.Temperature.Value);
     }
 }
